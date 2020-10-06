@@ -141,7 +141,7 @@ const [info,set_info]=React.useState()
 
 
 useEffect(() => {
-    axios.get(`http://localhost:4000/info`)
+    axios.get(`https://instaservermert.herokuapp.com/info`)
     .then(res => {
       const data = res.data.users;
 
