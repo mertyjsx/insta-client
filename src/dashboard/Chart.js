@@ -20,18 +20,18 @@ const data=[]
 let i=0
 let index=0
 let sınır=0
-if(datas.length<15){
+if(datas.length<100){
 sınır=datas.length
 index=0
 }else{
     sınır=15
-    index=datas.length-15
+    index=datas.length-90
 }
 console.log(datas.length)
 console.log(index)
 console.log(datas)
 
-for(let i=index;i<datas.length;i++){
+for(let i=0;i<datas.length;i++){
     console.log(datas[i].time)
 data.push(createData(getTime(datas[i].time),i+1))
 }
