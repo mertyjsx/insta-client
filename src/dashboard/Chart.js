@@ -25,7 +25,7 @@ sınır=datas.length
 index=0
 }else{
     sınır=15
-    index=datas.length-16
+    index=datas.length-15
 }
 console.log(datas.length)
 console.log(index)
