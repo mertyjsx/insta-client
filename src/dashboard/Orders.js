@@ -23,7 +23,9 @@ let following=data[account].filter(item=>item.log==="following").length
 let requested=data[account].filter(item=>item.log==="requested").length
 let enson=data[account][total-1].time
 console.log(enson)
-Row.push(createData(account,account,total,following,requested,new Date(enson).toUTCString()))
+let zaman=new Date(enson).setHours((new Date(enson).getUTCHours()+3)%24)
+console.log(new Date(zaman))
+Row.push(createData(account,account,total,following,requested,new Date(zaman).toString()))
 
 })
 

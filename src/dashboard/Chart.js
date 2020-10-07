@@ -10,7 +10,7 @@ function createData(time, amount) {
 
 const getTime=(date)=>{
 console.log(new Date(date).getUTCHours())
-    return `${new Date(date).getUTCHours()}:${new Date(date).getUTCMinutes()}`
+    return `${(new Date(date).getHours())}:${new Date(date).getMinutes()}`
 }
 
 
