@@ -9,8 +9,8 @@ function createData(time, amount) {
 }
 
 const getTime=(date)=>{
-
-    return `${new Date(date).getHours()}:${new Date(date).getMinutes()}`
+console.log(new Date(date).getUTCHours())
+    return `${new Date(date).getUTCHours()}:${new Date(date).getUTCMinutes()}`
 }
 
 
@@ -32,8 +32,8 @@ console.log(index)
 console.log(datas)
 
 for(let i=index;i<datas.length;i++){
-    console.log(i)
-data.push(createData(getTime(datas[i].time),i))
+    console.log(datas[i].time)
+data.push(createData(getTime(datas[i].time),i+1))
 }
 console.log(data)
 return data
@@ -70,7 +70,7 @@ const data=info?createTime(info.data):[]
               follow
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={true} />
+          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={true} activeDot />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
