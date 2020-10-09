@@ -135,8 +135,24 @@ export default function Dashboard() {
   };
 const [data,set_data]=React.useState()
 const [info,set_info]=React.useState()
+const [active,set_active]=React.useState([])
+useEffect(() => {
+  axios.get(`https://instaservermert.herokuapp.com/active`).then((res)=>
+  {
+let Array=res.data.active
+console.log(Array)
+    set_active(Array)
+
+  }
+  
+  )
 
 
+}
+  
+  
+  
+  ,[])
 
 
 
@@ -196,7 +212,7 @@ console.log(Accounts)
 
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+console.log("activee",active)
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -233,8 +249,8 @@ console.log(Accounts)
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Divider />
-        <List>{mainListItems}</List>
+        
+        {active?.map(item=><List>{item._id} <Divider />{new Date(item.time).toString()}<Divider/> {(item.active).toString()} </List>)}
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>
