@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer ,Tooltip} from 'recharts';
 import Title from './Title';
 
 // Generate Sales Data
@@ -16,27 +16,32 @@ console.log(new Date(date).getUTCHours())
 
 
 const createTime=(datas)=>{
-const data=[]
-let i=0
-let index=0
-let sınır=0
-if(datas.length<100){
-sınır=datas.length
-index=0
-}else{
-    sınır=15
-    index=datas.length-90
-}
-console.log(datas.length)
-console.log(index)
+let today=[]
+let yesterday=[]
+let twoday=[]
 console.log(datas)
+let date_Today=new Date().getUTCDay()
+datas&&datas.map((item)=>{
 
-for(let i=0;i<datas.length;i++){
-    console.log(datas[i].time)
-data.push(createData(getTime(datas[i].time),i+1))
-}
-console.log(data)
-return data
+if(new Date(item.time).getUTCDay()==date_Today)
+today.push(item)
+
+if(new Date(item.time).getUTCDay()==(date_Today-1))
+yesterday.push(item)
+
+if(new Date(item.time).getUTCDay()==(date_Today-2))
+twoday.push(item)
+})
+
+
+
+
+return [createData("2 gün önce",twoday.length),createData("dün",yesterday.length),
+createData("bugün",today.length)
+
+
+
+]
 
 
 }
@@ -60,8 +65,9 @@ const data=info?createTime(info.data):[]
             left: 24,
           }}
         >
+             <Tooltip/>
           <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-          <YAxis stroke={theme.palette.text.secondary}>
+          <YAxis dataKey="amount" stroke={theme.palette.text.secondary}>
             <Label
               angle={270}
               position="left"
@@ -70,7 +76,7 @@ const data=info?createTime(info.data):[]
               follow
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={true} activeDot />
+          <Line type="monotone"  dataKey="amount" stroke="#82ca9d" dot={true}  />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
