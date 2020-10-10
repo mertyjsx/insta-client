@@ -21,7 +21,11 @@ console.log(data[account])
 let total=data[account].length
 let following=data[account].filter(item=>item.log==="following").length
 let requested=data[account].filter(item=>item.log==="requested").length
-let enson=data[account][total-1].time
+let enson=data[account].sort(function(a, b) {
+  var dateA = new Date(a.time), dateB = new Date(b.time);
+  return dateA - dateB;
+})[data[account].length-1].time
+
 console.log(enson)
 let zaman=new Date(enson).setHours((new Date(enson).getUTCHours()+3)%24)
 console.log(new Date(zaman))
