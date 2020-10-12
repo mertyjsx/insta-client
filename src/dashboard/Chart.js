@@ -21,15 +21,17 @@ let yesterday=[]
 let twoday=[]
 console.log(datas)
 let date_Today=new Date().getUTCDay()
+console.log("bugün",date_Today)
 datas&&datas.map((item)=>{
+ 
 
 if(new Date(item.time).getUTCDay()==date_Today)
 today.push(item)
 
-if(new Date(item.time).getUTCDay()==(date_Today-1))
+if(new Date(item.time).getUTCDay()==(date_Today+6)%7)
 yesterday.push(item)
 
-if(new Date(item.time).getUTCDay()==(date_Today-2))
+if(new Date(item.time).getUTCDay()==(date_Today+5)%7)
 twoday.push(item)
 })
 
